@@ -1,0 +1,115 @@
+#+TITLE: Advent of Year 2022
+#+SUBTITLE: Day 01
+
+[[file:README.org][< Main]]
+
+* Log
+- completed in 38 minutes
+  
+* Puzzle
+** Input
+#+begin_src emacs-lisp
+(require 'f)
+(defconst aoc221/input (f-read-text "inputs/day-01_puzzle-01.txt"))
+#+end_src
+
+#+RESULTS:
+: aoc221/input
+
+** Part 1
+First, store the puzzle input in a const, well need it throughout this puzzle.
+
+#+begin_src emacs-lisp
+(let ((input (split-string aoc221/input "[\n]"))
+      (top 0)
+      (current 0)
+      (index 0))
+  (while (< index (length input))
+    (let ((value (string-to-number (nth index input))))
+      (when (= value 0)
+        (if (> current top)
+            (setq top current))
+        (setq current 0))
+      (setq current (+ current value)))
+    (setq index (+ 1 index)))
+  (if (> current top)
+      (setq top current))
+  (message "highest calories carrying elf: %s" top))  
+#+end_src
+
+#+RESULTS:
+: highest calories carrying elf: 69281
+
+
+** Puzzle 2
+Ok so i'll have to koop track of 3 top values at the same time...
+
+#+begin_src emacs-lisp
+(defun aoc2212/top-3 (value current-top)
+  ""
+  (-slice (sort (push value current-top) '>) 0 3))
+
+(let ((input (split-string aoc221/input "[\n]"))
+      (top '())
+      (current 0)
+      (index 0))
+  (while (< index (length input))
+    (let ((value (string-to-number (nth index input))))
+      (when (= value 0)
+        (setq top (aoc2211/top-3 current top))
+        (setq current 0))
+      (setq current (+ current value)))
+    (setq index (+ 1 index)))
+  (setq top (aoc2212/top-3 current top))
+  (message "total calories of the 3 elves carrying the most calories: %d" (-reduce '(lambda (a b ) (+ a b)) top)))
+#+end_src
+
+#+RESULTS:
+: total calories of the 3 elves carrying the most calories: 201524
+
+
+* improved code
+- [2022-12-01 do]
+I went back to this solution, see if I can improve on this.
+
+#+begin_src emacs-lisp
+(defun aoc221/top-intake (input initial callback)
+  ""
+  (let ((top initial)
+        (current 0)
+        (index 0))
+    (while (< index (length input))
+      (let ((value (string-to-number (nth index input))))
+        (when (= value 0)
+          (setq top (funcall callback current top))
+          (setq current 0))
+        (setq current (+ current value)))
+      (setq index (+ 1 index)))
+    (funcall callback current top)))
+
+(defun aoc2211/solution (input)
+  ""
+  (aoc221/top-intake
+   input
+   0
+   (lambda (value top) (max value top))))
+
+(defun aoc2212/solution (input)
+  ""
+  (-reduce (lambda (a b) (+ a b))
+           (aoc221/top-intake
+            input
+            '()
+            (lambda (value top)
+              (-slice (sort (push value top) '>) 0 3)))))
+
+(let ((input (split-string aoc221/input "[\n]")))
+  (message "solution 1: %d \nsolution 2: %d"
+           (aoc2211/solution input)
+           (aoc2212/solution input)))
+#+end_src
+
+#+RESULTS:
+: solution 1: 69281 
+: solution 2: 201524
+
