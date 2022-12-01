@@ -1,13 +1,28 @@
-#+TITLE: Advent of Year 2022
+#+TITLE: Advent of Code 2022
 #+SUBTITLE: Day 01
 
 [[file:README.org][< Main]]
 
 * Log
-- completed in 38 minutes
+** [2022-12-01 do 08:43]
+Some minor textual changes and a little improvement on the output of the revisited code.
   
+** [2022-12-01 do 06:45]
+Went back to see if i could improve on first solution
+
+** [2022-12-01 do 06:37:13]
+Submitted =part 2=, correct.
+
+** [2022-12-01 do 06:23:59]
+Submitted =part 1=, correct.
+
+** [2022-12-01 do 06:00]
+Let's do this! 
+
 * Puzzle
 ** Input
+First, store the puzzle input in a const, well need it throughout this puzzle.
+
 #+begin_src emacs-lisp
 (require 'f)
 (defconst aoc221/input (f-read-text "inputs/day-01_puzzle-01.txt"))
@@ -17,7 +32,6 @@
 : aoc221/input
 
 ** Part 1
-First, store the puzzle input in a const, well need it throughout this puzzle.
 
 #+begin_src emacs-lisp
 (let ((input (split-string aoc221/input "[\n]"))
@@ -41,7 +55,7 @@ First, store the puzzle input in a const, well need it throughout this puzzle.
 : highest calories carrying elf: 69281
 
 
-** Puzzle 2
+** Part 2
 Ok so i'll have to koop track of 3 top values at the same time...
 
 #+begin_src emacs-lisp
@@ -69,11 +83,10 @@ Ok so i'll have to koop track of 3 top values at the same time...
 
 
 * improved code
-- [2022-12-01 do]
 I went back to this solution, see if I can improve on this.
 
-#+begin_src emacs-lisp
-(defun aoc221/top-intake (input initial callback)
+#+begin_src emacs-lisp :results value table
+(defun aoc221/process-input (input initial callback)
   ""
   (let ((top initial)
         (current 0)
@@ -89,7 +102,7 @@ I went back to this solution, see if I can improve on this.
 
 (defun aoc2211/solution (input)
   ""
-  (aoc221/top-intake
+  (aoc221/process-input
    input
    0
    (lambda (value top) (max value top))))
@@ -97,19 +110,20 @@ I went back to this solution, see if I can improve on this.
 (defun aoc2212/solution (input)
   ""
   (-reduce (lambda (a b) (+ a b))
-           (aoc221/top-intake
+           (aoc221/process-input
             input
             '()
             (lambda (value top)
               (-slice (sort (push value top) '>) 0 3)))))
 
 (let ((input (split-string aoc221/input "[\n]")))
-  (message "solution 1: %d \nsolution 2: %d"
-           (aoc2211/solution input)
-           (aoc2212/solution input)))
+    `(("Part" "Solution")
+      ("1" ,(aoc2211/solution input))
+      ("2" ,(aoc2212/solution input))))
 #+end_src
 
 #+RESULTS:
-: solution 1: 69281 
-: solution 2: 201524
+| Part | Solution |
+|    1 |    69281 |
+|    2 |   201524 |
 

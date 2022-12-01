@@ -2,7 +2,7 @@
 #+AUTHOR: Jeroen Faijdherbe
 
 * TODO Intro
-bla bla [[https://adventofcode.com]] bla bla elisp skills bla bla literate programming blabla
+bla bla [[https://adventofcode.com]] bla bla =elisp skills= bla bla =literate programming= blabla.
 
 ** Example
 #+begin_src emacs-lisp
