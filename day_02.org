@@ -11,9 +11,9 @@ I kind of restarted this morning with the who thing... trying to fully utilize L
 Quickly moving on to the next puzzle as i'm already two days behind schedule.
 
 
-* Encrypted Strategy Guide
+* Encrypted Strategy Guide :hidden:
 
-#+NAME: encrypted-strategy-guide
+#+NAME: encrypted-strategy-guide 
 | C | Y |
 | C | Y |
 | C | Y |

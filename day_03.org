@@ -2,7 +2,7 @@
 
 * Inputs
 #+NAME: sample-input
-#+begin_example
+#+begin_example :exports none
 vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg
@@ -11,8 +11,8 @@ ttgJtRGJQctTZtZT
 CrZsJsPPZsGzwwsLwLmpwMDw
 #+end_example
 
-#+NAME: input
-#+begin_example
+#+NAME: input 
+#+begin_example :exports none
 ZTmtZvZLTFNLMQMNRvZncdcHwcScJvcdHnVfwV
 zqjqrzqjCqrjtqWhqChqrznhcfdfVnVSVgcffcgJcSgd
 rtDGpzjjqjlrGsWqBWFRsbTPFQMTbRNRFmbs
