@@ -14,4 +14,5 @@ bla bla [[https://adventofcode.com]] bla bla =elisp skills= bla bla =literate pr
 
 * Entries
 - [[file:day_01.org][Day 01, both solved]]
-- [[file:day_02.org][Day 02, both solved]] (two days late)  
+- [[file:day_02.org][Day 02, both solved]] (two days late)
+- [[file:day_03.org][Day 03, both solved]] (one day late) 
