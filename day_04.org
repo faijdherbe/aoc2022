@@ -1,5 +1,6 @@
 
-* input :hidden:
+* input                                                              :hidden:
+
 #+NAME: input-sample 
 #+begin_example
 2-4,6-8
@@ -12,7 +13,7 @@
 
 
 #+NAME: input
-#+begin_example
+#+begin_example :exports none
 23-33,24-65
 10-24,23-88
 71-92,18-71
