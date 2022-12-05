@@ -1025,8 +1025,6 @@
     `(,(string-to-number (nth 0 elements))
       ,(string-to-number (nth 1 elements)))))
 
-      
-
 (defun aoc224/range-contains (a b)
   ""
   (and (>= (car a) (car b))
@@ -1056,8 +1054,6 @@
   (let ((elements (split-string string "-")))
     `(,(string-to-number (nth 0 elements))
       ,(string-to-number (nth 1 elements)))))
-
-      
 
 (defun aoc224/range-overlaps (a b)
   ""
